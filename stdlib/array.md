@@ -1,92 +1,141 @@
 # Stdlib: array
 
-### `array.push`
-```
-<value1:any> [...<valueN:any>] <a:array> array.push := void
+This is a WIP and super not finalised. It's more of a notepad for thoughts.
 
-Push values `value1` through `valueN` onto the end of array `a`.
-
-Example:
-# $arr is [1, 2, 3]
-
-4 5 6 7 8 $arr array.push
-
-# $arr is now [1, 2, 3, 4, 5, 6, 7, 8]
+## `array.append`
+```bash
+%array.append define_operator
+  * $value arg
+  *[] $array arg
+begin
+  # ...
+end
 ```
 
-### `array.pop`
-```
-<a:array> array.pop := void
+Push a single value `$value` onto the end of array `$array`.
 
-Pop the last value from the end of the array `a`. NOTE: does not put this value anywhere, it is just removed from the array.
-
-Example:
-# $arr is [1, 2, 3, 4]
-
-$arr array.pop
-
-# $arr is now [1, 2, 3]
-# stack is empty
+### Example
+```bash
+number[] $array [1 2 3] declare
+4 $array array.append
+# $arr is now [1 2 3 4]
 ```
 
-### `array.peek`
-```
-<a:array> array.peek := <value:any>
+### See also
+  * [`array.prepend`](#arrayprepend)
 
-Take the last value from the end of the array and put it on the stack.
-
-Example:
-# $arr is [1, 2, 3]
-
-$arr array.peek
-
-# stack is now: 3
-```
-
-### `array.enqueue`
-```
-<value1:any> [...<valueN:any>] <a:array> array.enqueue := void
-
-Enqueue values `value1` through `valueN` onto the start of the array `a`.
-
-Example
-# $arr is [6, 7, 8]
-
-1 2 3 4 5 $arr array.enqueue
-
-# $arr is now [1, 2, 3, 4, 5, 6, 7, 8]
+## `array.prepend`
+```bash
+%array.prepend define_operator
+  * $value arg
+  *[] $array arg
+begin
+  # ...
+end
 ```
 
-### `array.dequeue`
-```
-<a:array> array.dequeue := void
+Push a single value `$value` onto the start of array `$array`.
 
-Dequeue the first value from the start of the array `a`. NOTE: does not put this value anywhere, it is just remove from the array.
-
-Example
-# $arr is [1, 2, 3, 4]
-
-$arr array.dequeue
-
-# $arr is now [2, 3, 4]
+### Example
+```bash
+number[] $array [2 3 4] declare
+1 $array array.prepend
+# $arr is now [1 2 3 4]
 ```
 
-### `array.is_array`
+### See also
+  * [`array.append`](#arrayappend)
+
+## `array.push`
+```bash
+%array.push define_operator
+  * $value arg
+  *[] $array arg
+begin
+  # ...
+end
 ```
-<a:any> array.is_array := <result:boolean>
 
-Determine whether `a` is of type array and pushes the boolean result onto the stack.
+Synonym for [`array.append`](#arrayappend). Push a single value `$value` onto the end of array `$array`.
 
-Example:
-[] $a set
-20 $b set
-
-$a array.is_array print
-# prints "true"
-
-$b array.is_array print
-# prints "false"
+### Example
+```bash
+number[] $array [1 2 3] declare
+4 $array array.push
+# $arr is now [1 2 3 4]
 ```
+
+### See also
+  * [`array.pop`](#arraypop)
+
+## `array.enqueue`
+```bash
+%array.enqueue define_operator
+  * $value arg
+  *[] $array arg
+begin
+  # ...
+end
+```
+
+Synonym for [`array.append`](#arrayappend). Push a single value `$value` onto the end of array `$array`.
+
+### Example
+```bash
+number[] $array [1 2 3] declare
+4 $array array.enqueue
+# $arr is now [1 2 3 4]
+```
+
+### See also
+  * [`array.dequeue`](#arraydequeue)
+
+## `array.pop`
+```bash
+%array.pop define_operator
+  *[] $array arg
+  * result
+begin
+  # ...
+end
+```
+
+Pop the last value from the end of the array `$array` and push the popped value onto the stack.
+
+### Example
+```bash
+number[] $array [1 2 3 4] declare
+$array array.pop
+# $array is now [1, 2, 3]
+# stack is 4
+```
+
+### See also
+  * [`array.push`](#arraypush)
+
+## `array.dequeue`
+```bash
+%array.dequeue define_operator
+  *[] $array arg
+  * result
+begin
+  # ...
+end
+```
+
+Dequeue the first value from the start of the array `$array` and push the dequeued value onto the stack.
+
+### Example
+```bash
+number $array [1 2 3 4] declare
+$array array.dequeue
+# $array is now [2, 3, 4]
+# stack is 1
+```
+
+### See also
+  * [`array.enqueue`](#arrayenqueue)
+
 
 ### Backlog
-  *
+  * _Nothing at present._
